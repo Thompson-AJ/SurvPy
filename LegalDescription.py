@@ -11,6 +11,7 @@ voidFile = "VoidLines.txt"
 
 #create output file
 f = open("out.txt", "w")
+e = open("cardinals.csv", "w")
 
 #read number of lines in input file for itteration range
 results = pd.read_csv(lineFile)
@@ -35,7 +36,7 @@ def dd2dms(dd):
 
 #open the output file
 f = open("out.txt", "a")
-
+e = open("cardinals.csv", "a")
 #loop through lines in input file based on range
 for i in range(results):
     # check if voiding lines
@@ -56,7 +57,7 @@ for i in range(results):
             direction_dms = 180 - direction
             direction = 'South ' + str(dd2dms(direction_dms)) + ' East'
         elif 180 < direction < 270:
-            direction_dms = 270 - direction
+            direction_dms = 90 - (270 - direction) # subract angle from 90 set the angle as degress east from south not the other way
             direction = 'South ' + str(dd2dms(direction_dms)) + ' West'
         elif 270 < direction < 360:
             direction_dms = 360 - direction
@@ -73,6 +74,8 @@ for i in range(results):
         #f.write('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
         f.write('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for working
         print('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ')
+        e.write(direction + ", ")
 
 #close the output file. This script was created by A.J. Thompson
 f.close()
+e.close()
