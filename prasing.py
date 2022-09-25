@@ -1,3 +1,8 @@
+#this script takes a COGO vector direction and distance chart from ArcgGIS pro
+#and converts it into a legal description for and area boundary. This was
+#created to define the border of a fire district in legal terms.
+#Writen by A.J. Thompson
+
 import pandas as pd
 
 #read input files
@@ -26,7 +31,7 @@ def dd2dms(dd):
     mult = -1 if dd < 0 else 1
     mnt,sec = divmod(abs(dd)*3600, 60)
     deg,mnt = divmod(mnt, 60)
-    return str(round(mult*deg)) + "°" + str(round(mult*mnt)) + "'" + str(round(mult*sec)) + '"' # make sure the rounding is right
+    return str(round(mult*deg)) + "°" + str(round(mult*mnt)) + "'" + str(round(mult*sec)) + '"' # !make sure the rounding is right
 
 #open the output file
 f = open("out.txt", "a")
@@ -69,5 +74,5 @@ for i in range(results):
         f.write('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for working
         print('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ')
 
-#close the output file
+#close the output file. This script was created by A.J. Thompson
 f.close()

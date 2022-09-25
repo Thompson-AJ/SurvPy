@@ -1,3 +1,6 @@
+#this is the original script that calculates the direction and distance for the survey vectors
+#based on coordinate points, it is currently depreciated
+
 import math
 import pandas as pd
 from math import atan2, degrees
