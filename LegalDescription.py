@@ -67,7 +67,6 @@ for i in range(results):
         direction = 'West'
     #write the vector line info
     #f.write('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
-    # note69 if i in voidlines: f.write('thenc.....) + "following the existing boundary"
     writeBearing = ('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet')
     if i in editLines:
         f.write(writeBearing + " along the boundary of the _ ; ")
