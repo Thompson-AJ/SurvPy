@@ -7,7 +7,7 @@ import pandas as pd
 
 #read input files
 lineFile = "ProposedBoundary_COGO.csv"
-voidFile = "VoidLines.txt"
+editFile = "editLines.txt"
 
 #create output file
 f = open("out.txt", "w")
@@ -18,10 +18,10 @@ results = pd.read_csv(lineFile)
 results = len(results)
 
 #read a voidline file to skip certain vector lines
-void = open(voidFile, "r")  #open and read inputfile
-voidLines = void.read() #assign inputfile contents to value
-voidLines = voidLines.split(", ") #create list based on contents and splate using commas
-voidLines = [eval(i) for i in voidLines] #convert list strings to integers
+edit = open(editFile, "r")  #open and read inputfile
+editLines = edit.read() #assign inputfile contents to value
+editLines = editLines.split(", ") #create list based on contents and splate using commas
+editLines = [eval(i) for i in editLines] #convert list strings to integers
 
 #read the vector file
 df = pd.read_csv(lineFile)
@@ -39,42 +39,43 @@ f = open("out.txt", "a")
 e = open("cardinals.csv", "a") #use in arcpro
 #loop through lines in input file based on range
 for i in range(results):
-    # check if voiding lines
-    if i in voidLines:
-        f.write("Thence [__];")
-        #print("___")
+    #print(i)
+    #print(voidLines)
+    line = lines[i]
+    direction = line[1]
+    distance = line[2]
+    #check the lines for direction quadrant, and call dd2dms function, and 
+    if 0 < direction < 90:
+        direction_dms = direction
+        direction = 'North ' + str(dd2dms(direction_dms)) + ' East'
+    elif 90 < direction < 180:
+        direction_dms = 180 - direction
+        direction = 'South ' + str(dd2dms(direction_dms)) + ' East'
+    elif 180 < direction < 270:
+        direction_dms = 90 - (270 - direction) # subract angle from 90 set the angle as degress east from south not the other way
+        direction = 'South ' + str(dd2dms(direction_dms)) + ' West'
+    elif 270 < direction < 360:
+        direction_dms = 360 - direction
+        direction = 'North ' + str(dd2dms(direction_dms)) + ' West'
+    elif direction == 0:
+        direction = 'North'
+    elif direction == 90:
+        direction = 'East'
+    elif direction == 180:
+        direction = 'South'
+    elif direction == 270:
+        direction = 'West'
+    #write the vector line info
+    #f.write('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
+    # note69 if i in voidlines: f.write('thenc.....) + "following the existing boundary"
+    writeBearing = ('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet')
+    if i in editLines:
+        f.write(writeBearing + " along the boundary of the _ ; ")
+        print(writeBearing + " along the boundary of the _ ; ")
     else:
-        #print(i)
-        #print(voidLines)
-        line = lines[i]
-        direction = line[1]
-        distance = line[2]
-        #check the lines for direction quadrant, and call dd2dms function, and 
-        if 0 < direction < 90:
-            direction_dms = direction
-            direction = 'North ' + str(dd2dms(direction_dms)) + ' East'
-        elif 90 < direction < 180:
-            direction_dms = 180 - direction
-            direction = 'South ' + str(dd2dms(direction_dms)) + ' East'
-        elif 180 < direction < 270:
-            direction_dms = 90 - (270 - direction) # subract angle from 90 set the angle as degress east from south not the other way
-            direction = 'South ' + str(dd2dms(direction_dms)) + ' West'
-        elif 270 < direction < 360:
-            direction_dms = 360 - direction
-            direction = 'North ' + str(dd2dms(direction_dms)) + ' West'
-        elif direction == 0:
-            direction = 'North'
-        elif direction == 90:
-            direction = 'East'
-        elif direction == 180:
-            direction = 'South'
-        elif direction == 270:
-            direction = 'West'
-        #write the vector line info
-        #f.write('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
-        f.write('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for working
-        print('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ')
-        e.write(direction + ", ") #use in arcpro
+        f.write(writeBearing + "; ")
+        print(writeBearing + "; ")
+    e.write(direction + ", ") #use in arcpro
 
 #close the output file. This script was created by A.J. Thompson
 f.close()
