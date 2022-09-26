@@ -6,7 +6,7 @@
 import pandas as pd
 
 #read input files
-lineFile = "ProposedBoundary_COGO_lines.csv"
+lineFile = "ProposedBoundary_COGO.csv"
 voidFile = "VoidLines.txt"
 
 #create output file
