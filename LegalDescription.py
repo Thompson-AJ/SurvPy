@@ -1,7 +1,7 @@
 #this script takes a COGO vector direction and distance chart from ArcgGIS pro
 #and converts it into a legal description for and area boundary. This was
 #created to define the border of a fire district in legal terms.
-#Writen by A.J. Thompson
+#Created by A.J. Thompson
 
 import pandas as pd
 
@@ -58,13 +58,13 @@ for i in range(results):
         direction_dms = 360 - direction
         direction = 'North ' + str(dd2dms(direction_dms)) + ' West'
     elif direction == 0:
-        direction = 'North'
+        direction = 'Northerly'
     elif direction == 90:
-        direction = 'East'
+        direction = 'Easterly'
     elif direction == 180:
-        direction = 'South'
+        direction = 'Southerly'
     elif direction == 270:
-        direction = 'West'
+        direction = 'Westerly'
     #write the vector line info
     #f.write('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
     writeBearing = ('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet')
