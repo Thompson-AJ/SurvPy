@@ -11,7 +11,7 @@ voidFile = "VoidLines.txt"
 
 #create output file
 f = open("out.txt", "w")
-e = open("cardinals.csv", "w")
+e = open("cardinals.csv", "w") #this file is for use in arcpro
 
 #read number of lines in input file for itteration range
 results = pd.read_csv(lineFile)
@@ -36,7 +36,7 @@ def dd2dms(dd):
 
 #open the output file
 f = open("out.txt", "a")
-e = open("cardinals.csv", "a")
+e = open("cardinals.csv", "a") #use in arcpro
 #loop through lines in input file based on range
 for i in range(results):
     # check if voiding lines
@@ -74,8 +74,8 @@ for i in range(results):
         #f.write('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
         f.write('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for working
         print('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ')
-        e.write(direction + ", ")
+        e.write(direction + ", ") #use in arcpro
 
 #close the output file. This script was created by A.J. Thompson
 f.close()
-e.close()
+e.close() # use in arcpro
