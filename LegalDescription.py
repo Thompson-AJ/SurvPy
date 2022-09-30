@@ -54,7 +54,7 @@ for i in range(results):
         direction = 'South ' + str(dd2dms(direction_dms)) + ' East'
         arcdirection = 'S ' + str(dd2dms(direction_dms)) + ' E'
     elif 180 < direction < 270:
-        direction_dms = 90 - (270 - direction) # subract angle from 90 set the angle as degress east from south not the other way
+        direction_dms = 90 - (270 - direction) #inverting angle
         direction = 'South ' + str(dd2dms(direction_dms)) + ' West'
         arcdirection = 'S ' + str(dd2dms(direction_dms)) + ' W'
     elif 270 < direction < 360:
