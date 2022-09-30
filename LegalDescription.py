@@ -66,11 +66,11 @@ for i in range(results):
     elif direction == 270:
         direction = 'Westerly'
     #write the vector line info
-    #f.write('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
-    writeBearing = ('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet')
+    writeBearing = ('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
+    writeBearingplusnum = ('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet')
     if i in editLines:
-        f.write(writeBearing + " along the boundary of the _ ; ")
-        print(writeBearing + " along the boundary of the _ ; ")
+        f.write(writeBearingplusnum + " along the boundary of the _ ; ")
+        print(writeBearingplusnum + " along the boundary of the _ ; ")
     else:
         f.write(writeBearing + "; ")
         print(writeBearing + "; ")
