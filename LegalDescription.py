@@ -9,8 +9,8 @@ import pandas as pd
 lineFile = "ProposedBoundary_COGO.csv"
 editFile = "editLines.txt"
 
-#create output file
-f = open("out.txt", "w")
+#create/overwrite output files
+f = open("out.txt", "w") 
 e = open("cardinals.csv", "w") #this file is for use in arcpro
 
 #read number of lines in input file for itteration range
@@ -48,15 +48,19 @@ for i in range(results):
     if 0 < direction < 90:
         direction_dms = direction
         direction = 'North ' + str(dd2dms(direction_dms)) + ' East'
+        arcdirection = 'N ' + str(dd2dms(direction_dms)) + ' E'
     elif 90 < direction < 180:
         direction_dms = 180 - direction
         direction = 'South ' + str(dd2dms(direction_dms)) + ' East'
+        arcdirection = 'S ' + str(dd2dms(direction_dms)) + ' E'
     elif 180 < direction < 270:
         direction_dms = 90 - (270 - direction) # subract angle from 90 set the angle as degress east from south not the other way
         direction = 'South ' + str(dd2dms(direction_dms)) + ' West'
+        arcdirection = 'S ' + str(dd2dms(direction_dms)) + ' W'
     elif 270 < direction < 360:
         direction_dms = 360 - direction
         direction = 'North ' + str(dd2dms(direction_dms)) + ' West'
+        arcdirection = 'N ' + str(dd2dms(direction_dms)) + ' W'
     elif direction == 0:
         direction = 'Northerly'
     elif direction == 90:
@@ -66,7 +70,7 @@ for i in range(results):
     elif direction == 270:
         direction = 'Westerly'
     #write the vector line info
-    writeBearing = ('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ') #this is for final
+    writeBearing = ('Thence ' + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet; ')
     writeBearingplusnum = ('Thence (' + str(i + 1) + "), " + str(direction) + ' a distance of ' + str(round(distance, 2)) + ' feet')
     if i in editLines:
         f.write(writeBearingplusnum + " along the boundary of the _ ; ")
@@ -74,7 +78,7 @@ for i in range(results):
     else:
         f.write(writeBearing + "; ")
         print(writeBearing + "; ")
-    e.write(direction + ", ") #use in arcpro
+    e.write(arcdirection + ", ") #use in arcpro
 
 #close the output file. This script was created by A.J. Thompson
 f.close()
