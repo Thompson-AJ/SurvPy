@@ -1,12 +1,12 @@
 # SurvPy
 
-Do you know how to describe an area of land in proper legal terms? It' actually pretty simply.
+Do you know how to describe an area of land in proper legal terms? It's actually pretty simple.
 
-Let's say you want to describe the border of a square property. You start at a reference point, say, the southwest corner of a census block, then you proceed north for 500 feet, then east for 1000 feet, then south for 500 feet, then west 500 feet back to the staring point. Makes sense right? And in legal terms it looks like this:
+Let's say you want to describe the border of a square property. You start at a reference point, say, the southwest corner of a census block, then you proceed north for 500 feet, then east for 1000 feet, then south for 500 feet, then west 500 feet back to the starting point. Makes sense right? And in legal terms it looks like this:
 
 Beginning at the southwest corner of the 3025 Census Block; Thence proceeding North 500 a distance of 500 feet; Thence West a distance of 1000 feet; Thence south a distance of 500 feet, Thence East to the point of beginning.
 
-That is pretty easy and straight forward. But what happens when your border is not perfectly square? Or has a large number of segments? This proccess can become miuch more ticky very quickly. This project was created to automate the porccess of describing a land border in legal terms. In fact it was created to describe the legal boundary of a fire disctric that has over 1000 lines that needed to be described, The final document being over 20 pages long. Imagine doing that by hand.
+That is pretty easy and straightforward. But what happens when your border is not perfectly square? Or has a large number of segments? This process can become much more ticky very quickly. This project was created to automate the process of describing a land border in legal terms. In fact it was created to describe the legal boundary of a fire district that has over 1000 lines that needed to be described, The final document being over 20 pages long. Imagine doing that by hand.
 
 How to use the script:
 
