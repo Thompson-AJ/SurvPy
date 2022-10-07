@@ -1,4 +1,4 @@
-#this script takes a COGO vector direction and distance chart from ArcgGIS pro
+#this script takes a COGO vector direction and distance table from ArcgGIS pro
 #and converts it into a legal description for and area boundary. This was
 #created to define the border of a fire district in legal terms.
 #Created by A.J. Thompson
